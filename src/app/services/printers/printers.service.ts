@@ -17,6 +17,8 @@ export class PrintersService {
         this.printerList$.subscribe((v: Printer[]) => {
             this.printerLastId = v.length ? v[v.length - 1].id : -1
         })
+        // To load items once
+        this.loadItems()
     }
 
     loadItems() {
@@ -38,5 +40,9 @@ export class PrintersService {
 
     deletePrinter(item: Printer) {
         this.store.dispatch(new PrintersActions.Delete(item))
+    }
+
+    getPrinter(id: number) {
+        return this.printerList$.map((v) => v.find((printer) => printer.id === id))
     }
 }

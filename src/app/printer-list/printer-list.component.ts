@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { Printer } from '../types'
 import { PrintersService } from '../services/printers/printers.service'
+
 @Component({
     selector: 'app-printer-list',
     templateUrl: './printer-list.component.html',
@@ -13,7 +14,8 @@ export class PrinterListComponent implements OnInit {
 
     constructor(private printersService: PrintersService) {
         this.printerList$ = printersService.printerList$
-        this.printersService.loadItems()
+
+        // this.printersService.loadItems()
     }
 
     ngOnInit() {}

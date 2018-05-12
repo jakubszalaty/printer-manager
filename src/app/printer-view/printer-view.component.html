@@ -1,0 +1,11 @@
+<div *ngIf="printer$ | async as printer">
+    <mat-card>
+        <mat-card-title>
+            {{printer.id}} {{printer.name}}
+        </mat-card-title>
+        <mat-card-content>
+            {{printer.description}}
+        </mat-card-content>
+    </mat-card>
+
+</div>

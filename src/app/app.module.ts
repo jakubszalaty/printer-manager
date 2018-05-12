@@ -41,10 +41,10 @@ import { AppRoutingModule } from './app.routing'
 import { PrinterListComponent } from './printer-list/printer-list.component'
 import { printersReducer } from './stores/printers/printers.reducer'
 import { PrintersService } from './services/printers/printers.service'
-import { Http } from '@angular/http'
+import { PrinterViewComponent } from './printer-view/printer-view.component'
 
 @NgModule({
-    declarations: [AppComponent, PrinterListComponent],
+    declarations: [AppComponent, PrinterListComponent, PrinterViewComponent],
     imports: [
         BrowserModule,
         // Routing
