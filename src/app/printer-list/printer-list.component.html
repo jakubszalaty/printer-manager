@@ -1,12 +1,21 @@
 <mat-list class="item-list">
     <mat-list-item *ngFor="let printer of printerList$ | async">
-        <h3 matLine> {{printer.name}} </h3>
+        <h3 matLine> {{printer.id}} {{printer.name}} </h3>
         <p matLine>
             {{printer.description}}
         </p>
         <a mat-icon-button [routerLink]="['/','printer', printer.id]" attr.aria-label="Go to {{printer.name}} edit">
             <mat-icon>edit</mat-icon>
         </a>
+        <button mat-icon-button (click)="deletePrinter(printer)" attr.aria-label="Delete {{printer.name}} printer">
+            <mat-icon>delete</mat-icon>
+        </button>
         <mat-divider></mat-divider>
     </mat-list-item>
 </mat-list>
+
+<div class="main-fab">
+    <button mat-fab color="accent" (click)="createNewPrinter()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
