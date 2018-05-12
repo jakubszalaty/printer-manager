@@ -7,3 +7,7 @@ export interface Printer {
     paperCount?: number
     type?: 'ink-jet' | 'laser'
 }
+
+export interface AppState {
+    printers: Printer[]
+}

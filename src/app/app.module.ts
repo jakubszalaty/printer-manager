@@ -34,10 +34,12 @@ import {
     MatTooltipModule,
     MatStepperModule,
 } from '@angular/material'
+import { StoreModule } from '@ngrx/store'
 
 import { AppComponent } from './app.component'
-import { AppRoutingModule } from './app.routing';
+import { AppRoutingModule } from './app.routing'
 import { PrinterListComponent } from './printer-list/printer-list.component'
+import { printersReducer } from './stores/printers/printers.reducer'
 
 @NgModule({
     declarations: [AppComponent, PrinterListComponent],
@@ -45,6 +47,8 @@ import { PrinterListComponent } from './printer-list/printer-list.component'
         BrowserModule,
         // Routing
         AppRoutingModule,
+        // Stores
+        StoreModule.forRoot({ printers: printersReducer }),
         // MaterialDesign
         MatAutocompleteModule,
         MatButtonModule,
