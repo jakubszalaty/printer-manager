@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -35,11 +34,14 @@ import {
     MatStepperModule,
 } from '@angular/material'
 import { StoreModule } from '@ngrx/store'
+import { HttpModule } from '@angular/http'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app.routing'
 import { PrinterListComponent } from './printer-list/printer-list.component'
 import { printersReducer } from './stores/printers/printers.reducer'
+import { PrintersService } from './services/printers/printers.service'
+import { Http } from '@angular/http'
 
 @NgModule({
     declarations: [AppComponent, PrinterListComponent],
@@ -49,6 +51,7 @@ import { printersReducer } from './stores/printers/printers.reducer'
         AppRoutingModule,
         // Stores
         StoreModule.forRoot({ printers: printersReducer }),
+        HttpModule,
         // MaterialDesign
         MatAutocompleteModule,
         MatButtonModule,
@@ -82,7 +85,7 @@ import { printersReducer } from './stores/printers/printers.reducer'
         MatTooltipModule,
         MatStepperModule,
     ],
-    providers: [],
+    providers: [PrintersService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
