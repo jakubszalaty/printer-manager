@@ -1,0 +1,9 @@
+<mat-list class="item-list">
+    <mat-list-item *ngFor="let printer of printerList | async">
+        <mat-divider></mat-divider>
+        <p matLine>{{printer.name}}</p>
+        <a mat-icon-button [routerLink]="['/','printer', printer.id]" attr.aria-label="Go to {{printer.name}} edit">
+            <mat-icon>navigate_next</mat-icon>
+        </a>
+    </mat-list-item>
+</mat-list>

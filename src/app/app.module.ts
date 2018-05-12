@@ -36,11 +36,15 @@ import {
 } from '@angular/material'
 
 import { AppComponent } from './app.component'
+import { AppRoutingModule } from './app.routing';
+import { PrinterListComponent } from './printer-list/printer-list.component'
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, PrinterListComponent],
     imports: [
         BrowserModule,
+        // Routing
+        AppRoutingModule,
         // MaterialDesign
         MatAutocompleteModule,
         MatButtonModule,
