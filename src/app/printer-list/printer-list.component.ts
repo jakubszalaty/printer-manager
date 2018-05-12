@@ -3,8 +3,6 @@ import { Observable } from 'rxjs/Observable'
 import { Store, select } from '@ngrx/store'
 import { Printer, AppState } from '../types'
 import * as PrintersActions from '../stores/printers/printers.actions'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/distinctUntilChanged'
 @Component({
     selector: 'app-printer-list',
     templateUrl: './printer-list.component.html',
