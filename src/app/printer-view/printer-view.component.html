@@ -12,7 +12,10 @@
 <form [formGroup]="form" [appConnectForm]="printer$ | async">
     <mat-card class="card">
         <mat-card-title>
-            Edit printer
+            <a class="back-icon" mat-icon-button [routerLink]="['/']" attr.aria-label="Back to list of printers">
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+            <span>Edit printer</span>
         </mat-card-title>
         <mat-card-content>
 

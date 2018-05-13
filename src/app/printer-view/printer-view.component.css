@@ -19,3 +19,7 @@
         max-width: calc(1360px - 48px - 64px - 112px - 256px);
     }
 }
+
+.back-icon {
+    top: -4px;
+}

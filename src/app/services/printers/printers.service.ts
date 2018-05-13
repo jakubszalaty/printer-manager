@@ -34,6 +34,10 @@ export class PrintersService {
             id: this.printerLastId + 1,
             name: 'New printer',
             description: `Printer's description`,
+            status: 'offline',
+            networkAddress: '0.0.0.0',
+            paperCount: 0,
+            type: '',
         }
         this.store.dispatch(new PrintersActions.Create(item))
     }
