@@ -21,6 +21,10 @@
 
             <mat-form-field class="form-field">
                 <input matInput placeholder="Name" formControlName="name" type="text">
+                <mat-error *ngIf="form.controls.name.hasError('required')">
+                    Name is
+                    <strong>required</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="form-field">
                 <input matInput placeholder="Description" formControlName="description" type="text">
@@ -36,6 +40,10 @@
 
             <mat-form-field class="form-field">
                 <input matInput placeholder="Network Address" formControlName="networkAddress" type="text">
+                <mat-error *ngIf="form.controls.networkAddress.value && form.controls.networkAddress.hasError('pattern')">
+                    Please enter a valid network address eg. 192.168.10.5
+                </mat-error>
+
             </mat-form-field>
 
 

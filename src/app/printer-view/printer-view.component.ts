@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { ActivatedRoute } from '@angular/router'
 import { PrintersService } from '../services/printers/printers.service'
 import 'rxjs/add/operator/map'
 import { Printer } from '../types'
 import { switchMap } from 'rxjs/operators'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { MatSnackBar } from '@angular/material'
 
 @Component({
     selector: 'app-printer-view',
     templateUrl: './printer-view.component.html',
     styleUrls: ['./printer-view.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrinterViewComponent implements OnInit {
     id$: Observable<number>
@@ -18,16 +20,23 @@ export class PrinterViewComponent implements OnInit {
     form: FormGroup
     statusChoices: string[] = ['online', 'offline', 'printing', 'broken']
     typeChoices: string[] = ['ink-jet', 'laser']
+
     constructor(
         private route: ActivatedRoute,
         private printersService: PrintersService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private snackBar: MatSnackBar
     ) {
         this.form = fb.group({
             id: '',
-            name: '',
+            name: ['', Validators.required],
             status: '',
-            networkAddress: '',
+            networkAddress: [
+                '',
+                Validators.pattern(
+                    /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
+                ),
+            ],
             description: '',
             paperCount: 0,
             type: '',
@@ -42,7 +51,12 @@ export class PrinterViewComponent implements OnInit {
         this.printer$ = this.id$.pipe(switchMap((v) => this.printersService.getPrinter(v)))
     }
     updatePrinter() {
+        if (this.form.invalid) {
+            this.snackBar.open('Form is invalid', '', { duration: 1000 })
+            return
+        }
         const formValue = this.form.value as Printer
         this.printersService.updatePrinter(formValue)
+        this.snackBar.open('Printer updated', '', { duration: 1000 })
     }
 }
