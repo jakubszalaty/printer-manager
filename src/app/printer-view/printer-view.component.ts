@@ -22,6 +22,7 @@ export class PrinterViewComponent implements OnInit {
         private fb: FormBuilder
     ) {
         this.form = fb.group({
+            id: '',
             name: '',
             status: '',
             networkAddress: '',
@@ -38,7 +39,8 @@ export class PrinterViewComponent implements OnInit {
 
         this.printer$ = this.id$.pipe(switchMap((v) => this.printersService.getPrinter(v)))
     }
-    savePrinter() {
-        console.log(this.form.value)
+    updatePrinter() {
+        const formValue = this.form.value as Printer
+        this.printersService.updatePrinter(formValue)
     }
 }

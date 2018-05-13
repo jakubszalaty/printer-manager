@@ -42,6 +42,10 @@ export class PrintersService {
         this.store.dispatch(new PrintersActions.Delete(item))
     }
 
+    updatePrinter(item: Printer) {
+        this.store.dispatch(new PrintersActions.Update(item))
+    }
+
     getPrinter(id: number) {
         return this.printerList$.map((v) => v.find((printer) => printer.id === id))
     }
