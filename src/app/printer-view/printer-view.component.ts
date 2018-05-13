@@ -16,6 +16,8 @@ export class PrinterViewComponent implements OnInit {
     id$: Observable<number>
     printer$: Observable<Printer>
     form: FormGroup
+    statusChoices: string[] = ['online', 'offline', 'printing', 'broken']
+    typeChoices: string[] = ['ink-jet', 'laser']
     constructor(
         private route: ActivatedRoute,
         private printersService: PrintersService,

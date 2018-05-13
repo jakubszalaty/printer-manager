@@ -25,17 +25,8 @@
 
             <mat-form-field class="form-field">
                 <mat-select placeholder="Status" formControlName="status" type="text">
-                    <mat-option value="online">
-                        Online
-                    </mat-option>
-                    <mat-option value="offline">
-                        Offline
-                    </mat-option>
-                    <mat-option value="printing">
-                        Printing
-                    </mat-option>
-                    <mat-option value="broken">
-                        Broken
+                    <mat-option *ngFor="let status of statusChoices" [value]="status">
+                        {{status}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -51,11 +42,8 @@
 
             <mat-form-field class="form-field">
                 <mat-select placeholder="Type" formControlName="type" type="text">
-                    <mat-option value="ink-jet">
-                        Ink-jet
-                    </mat-option>
-                    <mat-option value="laser">
-                        Laser
+                    <mat-option *ngFor="let type of typeChoices" [value]="type">
+                        {{type}}
                     </mat-option>
                 </mat-select>
 
