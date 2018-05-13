@@ -1,11 +1,26 @@
 <mat-list class="item-list">
     <mat-list-item *ngFor="let printer of printerList$ | async">
-        <h3 matLine> {{printer.id}} {{printer.name}} </h3>
+        <h3 matLine>
+            {{printer.name}}
+            <b>({{printer.status}})</b>
+        </h3>
         <p matLine>
             {{printer.description}}
         </p>
+        <p matLine>
+            IP: {{printer.networkAddress}}
+        </p>
+        <p matLine>
+            type: {{printer.type}}
+        </p>
+        <p matLine>
+            paper count: {{printer.paperCount}}
+        </p>
         <a mat-icon-button [routerLink]="['/','printer', printer.id]" attr.aria-label="Go to {{printer.name}} edit">
             <mat-icon>edit</mat-icon>
+        </a>
+        <a mat-icon-button [href]="getReportUrl()" attr.download="printer_report_{{printer.name}}.txt" attr.aria-label="Download {{printer.name}} report">
+            <mat-icon>save_alt</mat-icon>
         </a>
         <button mat-icon-button (click)="deletePrinter(printer)" attr.aria-label="Delete {{printer.name}} printer">
             <mat-icon>delete</mat-icon>

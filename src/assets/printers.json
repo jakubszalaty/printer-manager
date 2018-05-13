@@ -1,4 +1,20 @@
 [
-    { "id": 0, "name": "Canon", "description": "Nice printer" },
-    { "id": 1, "name": "HP", "description": "Better printer" }
+    {
+        "id": 0,
+        "name": "Canon",
+        "description": "Nice printer",
+        "status": "online",
+        "networkAddress": "192.168.1.10",
+        "paperCount": 60,
+        "type": "laser"
+    },
+    {
+        "id": 1,
+        "name": "HP",
+        "description": "Better printer",
+        "status": "broken",
+        "networkAddress": "192.168.1.15",
+        "paperCount": 46,
+        "type": "ink-jet"
+    }
 ]

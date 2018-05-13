@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { Printer } from '../types'
 import { PrintersService } from '../services/printers/printers.service'
+import { environment } from '../../environments/environment'
 
 @Component({
     selector: 'app-printer-list',
@@ -26,5 +27,9 @@ export class PrinterListComponent implements OnInit {
 
     deletePrinter(item: Printer) {
         this.printersService.deletePrinter(item)
+    }
+
+    getReportUrl() {
+        return `${environment.serverUri}/report.txt`
     }
 }
