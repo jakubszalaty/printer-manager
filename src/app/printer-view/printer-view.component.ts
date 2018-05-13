@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { PrintersService } from '../services/printers/printers.service'
 import 'rxjs/add/operator/map'
 import { Printer } from '../types'
@@ -23,6 +23,7 @@ export class PrinterViewComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private printersService: PrintersService,
         private fb: FormBuilder,
         private snackBar: MatSnackBar
@@ -49,7 +50,18 @@ export class PrinterViewComponent implements OnInit {
         })
 
         this.printer$ = this.id$.pipe(switchMap((v) => this.printersService.getPrinter(v)))
+
+        this.printer$.subscribe((v) => {
+            if (!v) {
+                this.router.navigate(['/'])
+                // Fix for bug: ExpressionChangedAfterItHasBeenCheckedError
+                setTimeout(() => {
+                    this.snackBar.open('Printer not exists', '', { duration: 1000 })
+                }, 0)
+            }
+        })
     }
+
     updatePrinter() {
         if (this.form.invalid) {
             this.snackBar.open('Form is invalid', '', { duration: 1000 })
