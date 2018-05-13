@@ -1,0 +1,45 @@
+{
+  "configVersion": 1,
+  "index": "/printer-manager/",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/printer-manager/favicon.ico",
+        "/printer-manager/index.html",
+        "/printer-manager/inline.2af2db48301279fd8ef1.bundle.js",
+        "/printer-manager/main.33a9dfe3d8efd29eafc7.bundle.js",
+        "/printer-manager/polyfills.fa355316cdb9976e9e87.bundle.js",
+        "/printer-manager/styles.a1a654fd553df06f0756.bundle.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/printer-manager/assets/icon.png",
+        "/printer-manager/assets/printers.json",
+        "/printer-manager/assets/report.txt"
+      ],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+      ]
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/printer-manager/inline.2af2db48301279fd8ef1.bundle.js": "c18c88585ec238bd10eb5216bc929f05df7eb4e8",
+    "/printer-manager/assets/icon.png": "a5e132c06c93be2bda6fdb8dd1d37bf8538edd8c",
+    "/printer-manager/main.33a9dfe3d8efd29eafc7.bundle.js": "f45e46f54bc696667c54e6422bd848e03e71c44c",
+    "/printer-manager/assets/printers.json": "77b62ad3ce128d61d848c69300a132e8f7d76700",
+    "/printer-manager/polyfills.fa355316cdb9976e9e87.bundle.js": "c3d24a1f77af3cee1085cb80eac645c141d47aec",
+    "/printer-manager/assets/report.txt": "6d422a9075e66f1a1f63bab23e3a6b18a19d74f2",
+    "/printer-manager/styles.a1a654fd553df06f0756.bundle.css": "f328008643059ea2ebdcf46922e57ac042ded2f6",
+    "/printer-manager/favicon.ico": "7760246a970dac7b8b143c305822d38fba647a30",
+    "/printer-manager/index.html": "d7947756a0a3bef473a87c7fe6293f679cac2f1b"
+  }
+}
