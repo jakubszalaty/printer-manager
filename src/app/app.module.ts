@@ -42,9 +42,12 @@ import { PrinterListComponent } from './printer-list/printer-list.component'
 import { printersReducer } from './stores/printers/printers.reducer'
 import { PrintersService } from './services/printers/printers.service'
 import { PrinterViewComponent } from './printer-view/printer-view.component'
+import { ConnectFormDirective } from './directives/connect-form/connect-form.directive'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
-    declarations: [AppComponent, PrinterListComponent, PrinterViewComponent],
+    declarations: [AppComponent, PrinterListComponent, PrinterViewComponent, ConnectFormDirective],
     imports: [
         BrowserModule,
         // Routing
@@ -52,6 +55,9 @@ import { PrinterViewComponent } from './printer-view/printer-view.component'
         // Stores
         StoreModule.forRoot({ printers: printersReducer }),
         HttpModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
         // MaterialDesign
         MatAutocompleteModule,
         MatButtonModule,

@@ -1,4 +1,4 @@
-<div *ngIf="printer$ | async as printer">
+<!-- <div *ngIf="printer$ | async as printer">
     <mat-card>
         <mat-card-title>
             {{printer.id}} {{printer.name}}
@@ -7,5 +7,66 @@
             {{printer.description}}
         </mat-card-content>
     </mat-card>
+</div> -->
 
+<form [formGroup]="form" [appConnectForm]="printer$ | async">
+    <mat-card class="card">
+        <mat-card-title>
+            Edit printer
+        </mat-card-title>
+        <mat-card-content>
+
+            <mat-form-field class="form-field">
+                <input matInput placeholder="Name" formControlName="name" type="text">
+            </mat-form-field>
+            <mat-form-field class="form-field">
+                <input matInput placeholder="Description" formControlName="description" type="text">
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+                <mat-select placeholder="Status" formControlName="status" type="text">
+                    <mat-option value="online">
+                        Online
+                    </mat-option>
+                    <mat-option value="offline">
+                        Offline
+                    </mat-option>
+                    <mat-option value="printing">
+                        Printing
+                    </mat-option>
+                    <mat-option value="broken">
+                        Broken
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+                <input matInput placeholder="Network Address" formControlName="networkAddress" type="text">
+            </mat-form-field>
+
+
+            <mat-form-field class="form-field">
+                <input matInput placeholder="Paper Count" formControlName="paperCount" type="number">
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+                <mat-select placeholder="Type" formControlName="type" type="text">
+                    <mat-option value="ink-jet">
+                        Ink-jet
+                    </mat-option>
+                    <mat-option value="laser">
+                        Laser
+                    </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+        </mat-card-content>
+    </mat-card>
+</form>
+
+<div class="main-fab">
+    <button mat-fab color="accent" (click)="savePrinter()">
+        <mat-icon>done</mat-icon>
+    </button>
 </div>

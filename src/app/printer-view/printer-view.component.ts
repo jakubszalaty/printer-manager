@@ -5,6 +5,7 @@ import { PrintersService } from '../services/printers/printers.service'
 import 'rxjs/add/operator/map'
 import { Printer } from '../types'
 import { switchMap } from 'rxjs/operators'
+import { FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({
     selector: 'app-printer-view',
@@ -14,8 +15,21 @@ import { switchMap } from 'rxjs/operators'
 export class PrinterViewComponent implements OnInit {
     id$: Observable<number>
     printer$: Observable<Printer>
-
-    constructor(private route: ActivatedRoute, private printersService: PrintersService) {}
+    form: FormGroup
+    constructor(
+        private route: ActivatedRoute,
+        private printersService: PrintersService,
+        private fb: FormBuilder
+    ) {
+        this.form = fb.group({
+            name: '',
+            status: '',
+            networkAddress: '',
+            description: '',
+            paperCount: 0,
+            type: '',
+        })
+    }
 
     ngOnInit() {
         this.id$ = this.route.paramMap.map((params) => {
@@ -23,5 +37,8 @@ export class PrinterViewComponent implements OnInit {
         })
 
         this.printer$ = this.id$.pipe(switchMap((v) => this.printersService.getPrinter(v)))
+    }
+    savePrinter() {
+        console.log(this.form.value)
     }
 }

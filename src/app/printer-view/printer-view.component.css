@@ -1,0 +1,21 @@
+.form-field {
+    width: 100%;
+}
+
+.card {
+    margin: 16px;
+}
+
+@media (min-width: 840px) {
+    .card {
+        width: calc(100vw - 48px - 64px - 112px);
+        margin: 16px auto 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        width: calc(100vw - 48px - 64px - 112px - 256px);
+        max-width: calc(1360px - 48px - 64px - 112px - 256px);
+    }
+}
