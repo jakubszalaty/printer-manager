@@ -35,7 +35,9 @@ import {
 } from '@angular/material'
 import { StoreModule } from '@ngrx/store'
 import { HttpModule } from '@angular/http'
+import { ServiceWorkerModule } from '@angular/service-worker'
 
+import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app.routing'
 import { PrinterListComponent } from './printer-list/printer-list.component'
@@ -46,7 +48,7 @@ import { ConnectFormDirective } from './directives/connect-form/connect-form.dir
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { OrderByPipe } from './pipes/order-by.pipe'
-import { PrintersFilterPipe } from './pipes/printers-filter.pipe';
+import { PrintersFilterPipe } from './pipes/printers-filter.pipe'
 
 @NgModule({
     declarations: [
@@ -99,6 +101,7 @@ import { PrintersFilterPipe } from './pipes/printers-filter.pipe';
         MatToolbarModule,
         MatTooltipModule,
         MatStepperModule,
+        environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [],
     ],
     providers: [PrintersService],
     bootstrap: [AppComponent],
