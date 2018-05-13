@@ -1,6 +1,15 @@
 [
     {
         "id": 0,
+        "name": "HP",
+        "description": "Better printer",
+        "status": "broken",
+        "networkAddress": "192.168.1.15",
+        "paperCount": 46,
+        "type": "ink-jet"
+    },
+    {
+        "id": 1,
         "name": "Canon",
         "description": "Nice printer",
         "status": "online",
@@ -9,12 +18,12 @@
         "type": "laser"
     },
     {
-        "id": 1,
-        "name": "HP",
-        "description": "Better printer",
-        "status": "broken",
-        "networkAddress": "192.168.1.15",
-        "paperCount": 46,
-        "type": "ink-jet"
+        "id": 2,
+        "name": "Asus",
+        "description": "Simple printer",
+        "status": "offline",
+        "networkAddress": "192.168.2.15",
+        "paperCount": 50,
+        "type": "laser"
     }
 ]

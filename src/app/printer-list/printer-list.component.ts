@@ -9,10 +9,14 @@ import { MatSnackBar } from '@angular/material'
     selector: 'app-printer-list',
     templateUrl: './printer-list.component.html',
     styleUrls: ['./printer-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrinterListComponent implements OnInit {
     printerList$: Observable<Printer[]>
+
+    orderColumn = 'id'
+
+    searchText = ''
 
     constructor(private printersService: PrintersService, private snackBar: MatSnackBar) {
         this.printerList$ = printersService.printerList$
@@ -34,5 +38,12 @@ export class PrinterListComponent implements OnInit {
 
     getReportUrl() {
         return `${environment.serverUri}/report.txt`
+    }
+
+    changeOrder($event) {
+        this.orderColumn = $event.checked ? 'name' : 'id'
+    }
+    clearSearchText() {
+        this.searchText = ''
     }
 }

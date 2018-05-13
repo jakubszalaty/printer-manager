@@ -1,5 +1,19 @@
+<div class="search-form mat-elevation-z2">
+    <mat-form-field class="form-field" floatLabel="never">
+        <span matPrefix>
+            <mat-icon class="search-icon">search</mat-icon>
+        </span>
+        <input matInput placeholder="Search by name" [(ngModel)]="searchText" autocomplete="off">
+        <span class="pointer-cursor" matSuffix *ngIf="searchText" (click)="clearSearchText()">
+            <mat-icon class="search-icon">clear</mat-icon>
+        </span>
+
+    </mat-form-field>
+    <mat-slide-toggle class="slide-toggle" (change)="changeOrder($event)">Sort by name</mat-slide-toggle>
+</div>
+
 <mat-list class="item-list">
-    <mat-list-item *ngFor="let printer of printerList$ | async">
+    <mat-list-item *ngFor="let printer of printerList$ | async | orderBy: orderColumn | printersFilter: searchText">
         <h3 matLine>
             {{printer.name}}
             <b>({{printer.status}})</b>

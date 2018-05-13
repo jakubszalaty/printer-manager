@@ -45,9 +45,18 @@ import { PrinterViewComponent } from './printer-view/printer-view.component'
 import { ConnectFormDirective } from './directives/connect-form/connect-form.directive'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { OrderByPipe } from './pipes/order-by.pipe'
+import { PrintersFilterPipe } from './pipes/printers-filter.pipe';
 
 @NgModule({
-    declarations: [AppComponent, PrinterListComponent, PrinterViewComponent, ConnectFormDirective],
+    declarations: [
+        AppComponent,
+        PrinterListComponent,
+        PrinterViewComponent,
+        ConnectFormDirective,
+        OrderByPipe,
+        PrintersFilterPipe,
+    ],
     imports: [
         BrowserModule,
         // Routing
