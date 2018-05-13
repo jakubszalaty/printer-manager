@@ -54,4 +54,5 @@
 
 .search-form .form-field {
     flex: auto;
+    min-width: 120px;
 }
