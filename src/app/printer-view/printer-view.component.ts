@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { ActivatedRoute, Router } from '@angular/router'
 import { PrintersService } from '../services/printers/printers.service'
@@ -7,6 +7,7 @@ import { Printer } from '../types'
 import { switchMap } from 'rxjs/operators'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
+import { Subscription } from 'rxjs/Subscription'
 
 @Component({
     selector: 'app-printer-view',
@@ -14,12 +15,13 @@ import { MatSnackBar } from '@angular/material'
     styleUrls: ['./printer-view.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PrinterViewComponent implements OnInit {
+export class PrinterViewComponent implements OnInit, OnDestroy {
     id$: Observable<number>
     printer$: Observable<Printer>
     form: FormGroup
     statusChoices: string[] = ['online', 'offline', 'printing', 'broken']
     typeChoices: string[] = ['ink-jet', 'laser']
+    subscriptions: Subscription[] = []
 
     constructor(
         private route: ActivatedRoute,
@@ -51,7 +53,7 @@ export class PrinterViewComponent implements OnInit {
 
         this.printer$ = this.id$.pipe(switchMap((v) => this.printersService.getPrinter(v)))
 
-        this.printer$.subscribe((v) => {
+        const printerSub = this.printer$.subscribe((v) => {
             if (!v) {
                 this.router.navigate(['/'])
                 // Fix for bug: ExpressionChangedAfterItHasBeenCheckedError
@@ -60,8 +62,15 @@ export class PrinterViewComponent implements OnInit {
                 }, 0)
             }
         })
+        this.subscriptions = [...this.subscriptions, printerSub]
     }
-
+    ngOnDestroy(): void {
+        for (const sub of this.subscriptions) {
+            if (sub && sub.unsubscribe) {
+                sub.unsubscribe()
+            }
+        }
+    }
     updatePrinter() {
         if (this.form.invalid) {
             this.snackBar.open('Form is invalid', '', { duration: 1000 })

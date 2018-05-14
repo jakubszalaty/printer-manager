@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { Printer } from '../types'
 import { PrintersService } from '../services/printers/printers.service'
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material'
     styleUrls: ['./printer-list.component.css'],
     // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PrinterListComponent implements OnInit {
+export class PrinterListComponent {
     printerList$: Observable<Printer[]>
 
     orderColumn = 'id'
@@ -23,8 +23,6 @@ export class PrinterListComponent implements OnInit {
 
         // this.printersService.loadItems()
     }
-
-    ngOnInit() {}
 
     createNewPrinter() {
         this.printersService.createNewPrinter()
